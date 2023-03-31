@@ -40,6 +40,9 @@ $ sudo apt-get install -y python3-dev python3-distutils python3-pip
 
 # Instala o virtualenv
 $ pip3 install virtualenv
+
+# Cria o ambiente virtual
+$ python3 -m venv ~/venv
 ```
 
 ## [🔗](https://github.com/nvm-sh/nvm#install--update-script) Node
