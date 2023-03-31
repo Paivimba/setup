@@ -43,6 +43,9 @@ $ pip3 install virtualenv
 
 # Cria o ambiente virtual
 $ python3 -m venv ~/venv
+
+# Ativa o ambiente virtual
+$ . ~/venv/bin/activate
 ```
 
 ## [🔗](https://github.com/nvm-sh/nvm#install--update-script) Node
