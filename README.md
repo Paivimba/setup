@@ -29,23 +29,42 @@ $ sudo apt-get install default-jre
 # Atualiza os pacotes
 $ sudo apt-get update
 
-# Adiciona o Python ao gerenciador de pacotes
-$ sudo apt-add-repository ppa:deadsnakes/ppa -y
+# Dependências
+$ sudo apt install -y build-essential curl git libssl-dev zlib1g-dev \
+   libbz2-dev libreadline-dev libsqlite3-dev wget llvm libncurses5-dev \
+   libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
 
-# Atualiza os pacotes
-$ sudo apt-get update
+# Pyenv
+$ curl https://pyenv.run | bash
 
-# Instala o Python 3
-$ sudo apt-get install -y python3-dev python3-distutils python3-pip
+# Configurar .zsh
+# # Pyenv Setup
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init --path)"
+# fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv virtualenv-init -)"
+# fi
 
-# Instala o virtualenv
-$ pip3 install virtualenv
+# Listar versões
+$ pyenv install -l
 
-# Cria o ambiente virtual
-$ python3 -m venv ~/venv
+# Instalar versão
+$ pyenv install 3.13
 
-# Ativa o ambiente virtual
-$ . ~/venv/bin/activate
+# Criar ambiente virtual
+$ pyenv virtualenv 3.13.9 global
+
+# Definir versão global
+$ pyenv global global
+
+# Verificar versão
+$ python -V
 ```
 
 ## # VSCode
