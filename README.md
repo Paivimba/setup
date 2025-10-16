@@ -48,34 +48,6 @@ $ python3 -m venv ~/venv
 $ . ~/venv/bin/activate
 ```
 
-## [🔗](https://github.com/nvm-sh/nvm#install--update-script) Node
-
-```bash
-# Atualiza os pacotes
-$ sudo apt-get update
-
-# Baixa e executa o script de instalação
-$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-# Adiciona as variáveis de ambiente do Node
-$ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# Recarrega as configurações do terminal
-$ source ~/.bashrc
-
-# Testando a instalação
-$ nvm --version
-
-# Reinicia o computador
-$ reboot
-
-# Instalação do Node
-$ nvm install 12.18.4
-
-# Testando a instalação
-$ node --version
-```
-
 ## # VSCode
 
 ```bash
@@ -106,22 +78,26 @@ $ sudo apt-get update
 $ sudo apt-get install git-all
 ```
 
-## [🔗](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) Docker Engine
+## [🔗](https://docs.docker.com/engine/install/ubuntu/) Docker Engine
 
 ```bash
 # Atualiza os pacotes
 $ sudo apt-get update
 
 # Adiciona o docker ao gerenciador de pacotes
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+$ sudo install -m 0755 -d /etc/apt/keyrings
+$ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+$ sudo chmod a+r /etc/apt/keyrings/docker.asc
+$ echo \
+   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Atualiza os pacotes
 $ sudo apt-get update
 
 # Instala o Docker Engine
-$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Cria um grupo de usuários Docker
 $ sudo groupadd docker
@@ -134,23 +110,4 @@ $ reboot
 
 # Testando a instalação
 $ docker run hello-world
-```
-
-## [🔗](https://docs.docker.com/compose/install/#install-compose) Docker Compose
-
-```bash
-# Faz o download do Docker Compose
-$ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-# Concede permissão de execução ao binário
-$ sudo chmod +x /usr/local/bin/docker-compose
-
-# Adiciona o auto complete
-$ sudo curl -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
-
-# Recarrega as configurações do terminal
-$ source ~/.bashrc
-
-# Testando a instalação
-$ docker-compose --version
 ```
